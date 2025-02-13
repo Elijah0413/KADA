@@ -328,7 +328,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="mt-4 text-center">
                             <a href="/admins/active-members" class="btn btn-outline-secondary btn-lg">
                                 <i class="bi bi-arrow-left icon"></i>Kembali
