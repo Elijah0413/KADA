@@ -1,0 +1,39 @@
+# Enable rewrite engine
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # If your site is in a subdirectory, uncomment and modify the line below
+    # RewriteBase /subdirectory/
+    RewriteBase /
+    
+    # Handle HTTPS redirect
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    
+    # If the requested file or directory doesn't exist
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    
+    # Route everything else to index.php
+    RewriteRule . index.php [L]
+</IfModule>
+
+# Prevent directory listing
+Options -Indexes
+
+# Set default character set
+AddDefaultCharset UTF-8
+
+# PHP Error Reporting - Remove these in production
+php_flag display_errors on
+php_value error_reporting E_ALL
+
+# Allow PHP to use larger memory limit if needed
+php_value memory_limit 256M
+
+# Increase max execution time if needed
+php_value max_execution_time 300
+
+# Increase upload limit if needed
+php_value upload_max_filesize 64M
+php_value post_max_size 64M
